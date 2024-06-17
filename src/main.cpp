@@ -3,10 +3,14 @@
 #define laser 4
 #define sensor 5
 
+#define BUFFER_TIME 500
+
 int detectionFlag;
 long timeWhenDetected;
 bool resetFlag;
 int count;
+
+
 
 void setup()
 {
@@ -29,7 +33,7 @@ void loop()
 
     // Serial.print("outside inner loop");
     // Serial.println(detectionFlag);
-    if (resetFlag && (millis() - timeWhenDetected >= 2000))
+    if (resetFlag && (millis() - timeWhenDetected >= BUFFER_TIME))
     {
 
       Serial.print("Mosquito Detected: ");
