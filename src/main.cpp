@@ -27,7 +27,7 @@ void loop()
 {
   detectionFlag = digitalRead(sensor);
 
-  if (detectionFlag == HIGH)
+  if (detectionFlag == HIGH) //testing git comment
   {
     
 
