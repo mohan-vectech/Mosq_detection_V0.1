@@ -1,33 +1,40 @@
 #include <Arduino.h>
 
-#define laser 4
-#define sensor 5
+#define laser1 4
+#define sensor1 5
+#define laser2 6
+#define sensor2 7
 
 #define BUFFER_TIME 500
 
-int detectionFlag;
+int detectionFlag1;
+int detectionFlag2;
 long timeWhenDetected;
 bool resetFlag;
 int count;
 
 
-
 void setup()
 {
   Serial.begin(115200);
-  pinMode(laser, OUTPUT);
-  pinMode(sensor, INPUT);
+  pinMode(laser1, OUTPUT);
+  pinMode(sensor1, INPUT);
+  pinMode(laser2, OUTPUT);
+  pinMode(sensor2, INPUT);
 
-  digitalWrite(laser, HIGH);
+  digitalWrite(laser1, HIGH);
+  digitalWrite(laser2, HIGH);
   resetFlag = true;
   count = 0;
 }
 
 void loop()
 {
-  detectionFlag = digitalRead(sensor);
+  detectionFlag1 = digitalRead(sensor1);
+  detectionFlag2 = digitalRead(sensor2);
 
-  if (detectionFlag == HIGH) //testing git comment
+
+  if ((detectionFlag1 == HIGH) || (detectionFlag2 == HIGH)) //testing git comment
   {
     
 
