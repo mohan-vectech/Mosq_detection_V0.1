@@ -1,14 +1,25 @@
 #include <Arduino.h>
 
-#define laser1 4
-#define sensor1 5
-#define laser2 6
-#define sensor2 7
+//#define laser1 4
+//#define laser2 6
+//#define laser3 4
+//#define laser4 6
+//#define laser5 4
 
-#define BUFFER_TIME 500
+#define sensor1 11
+#define sensor2 10
+#define sensor3 9
+#define sensor4 46
+#define sensor5 3
+ 
+#define BUFFER_TIME 250
 
 int detectionFlag1;
 int detectionFlag2;
+int detectionFlag3;
+int detectionFlag4;
+int detectionFlag5;
+
 long timeWhenDetected;
 bool resetFlag;
 int count;
@@ -16,14 +27,18 @@ int count;
 
 void setup()
 {
-  Serial.begin(115200);
-  pinMode(laser1, OUTPUT);
-  pinMode(sensor1, INPUT);
-  pinMode(laser2, OUTPUT);
-  pinMode(sensor2, INPUT);
+  Serial.begin(9600);
+  //pinMode(laser1, OUTPUT);
+  //pinMode(laser2, OUTPUT);
 
-  digitalWrite(laser1, HIGH);
-  digitalWrite(laser2, HIGH);
+  pinMode(sensor1, INPUT);
+  pinMode(sensor2, INPUT);
+  pinMode(sensor3, INPUT);
+  pinMode(sensor4, INPUT);
+  pinMode(sensor5, INPUT);
+
+  //digitalWrite(laser1, HIGH);
+  //digitalWrite(laser2, HIGH);
   resetFlag = true;
   count = 0;
 }
@@ -32,9 +47,12 @@ void loop()
 {
   detectionFlag1 = digitalRead(sensor1);
   detectionFlag2 = digitalRead(sensor2);
+  detectionFlag3 = digitalRead(sensor3);
+  detectionFlag4 = digitalRead(sensor4);
+  detectionFlag5 = digitalRead(sensor5);
 
 
-  if ((detectionFlag1 == HIGH) || (detectionFlag2 == HIGH)) //testing git comment
+  if ((detectionFlag1 == HIGH) || (detectionFlag2 == HIGH) || (detectionFlag3 == HIGH) || (detectionFlag4 == HIGH) || (detectionFlag5 == HIGH)) //testing git comment
   {
     
 
