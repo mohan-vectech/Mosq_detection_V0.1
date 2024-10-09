@@ -12,7 +12,7 @@
 #define sensor4 46
 #define sensor5 3
  
-#define BUFFER_TIME 250
+#define BUFFER_TIME 500
 
 int detectionFlag1;
 int detectionFlag2;
@@ -27,7 +27,7 @@ int count;
 
 void setup()
 {
-  Serial.begin(9600);
+  Serial.begin(115200);
   //pinMode(laser1, OUTPUT);
   //pinMode(laser2, OUTPUT);
 
@@ -41,10 +41,12 @@ void setup()
   //digitalWrite(laser2, HIGH);
   resetFlag = true;
   count = 0;
+  Serial.print("setup complete");
 }
 
 void loop()
 {
+  Serial.print("in loop");
   detectionFlag1 = digitalRead(sensor1);
   detectionFlag2 = digitalRead(sensor2);
   detectionFlag3 = digitalRead(sensor3);
@@ -72,5 +74,9 @@ void loop()
   else
   {
     resetFlag = true;
+    Serial.println("No mosquito detected");
+    Serial.println(count);
+
+
   }
 }
