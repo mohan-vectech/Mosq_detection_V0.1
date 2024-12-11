@@ -18,6 +18,8 @@ float currentRead = 0;
 float lastRead = 0;
 float diffBetweenReads;
 
+float timeElapsed = 0;
+
 void setup() {
   pinMode(enA, OUTPUT);
   pinMode(in1, OUTPUT);
@@ -83,11 +85,16 @@ void loop() {
   
   digitalWrite(in1, LOW);
   digitalWrite(in2, HIGH);
- // Serial.println("motor is running");
-  currentRead = veml.readLux();
-  Serial.println(currentRead);
 
-if ((abs(dynThreshold  - currentRead)) > 25){ //&& diffBetweenReads < -0.1) {
+  currentRead = veml.readLux();
+  timeElapsed = round((millis() / 1000.0 - 30) * 100) / 100.0;
+  Serial.print(timeElapsed); // Time elapsed for graphing
+  Serial.print(",");          // Separator
+  Serial.print(currentRead);  // Current lux reading
+  Serial.print(",");          // Separator
+  Serial.println(dynThreshold); // Threshold value
+
+if ((dynThreshold  - currentRead) > 25){ //&& diffBetweenReads < -0.1) {
       //Serial.print("Lux at count: ");
       Serial.println(veml.readLux());
       Serial.print("Count: ");
